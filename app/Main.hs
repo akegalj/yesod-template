@@ -4,14 +4,36 @@
 {-# LANGUAGE TypeFamilies          #-}
 import           Yesod
 
-data HelloWorld = HelloWorld
+data App = App
+mkYesod "App" [parseRoutes|
+/ HomeR GET
+|]
 
-mkYesod "HelloWorld" [parseRoutes| / HomeR GET |]
+myLayout :: Widget -> Handler Html
+myLayout widget = do
+    pc <- widgetToPageContent widget
+    withUrlRenderer
+        [hamlet|
+            $doctype 5
+            <html>
+                <head>
+                    <title>#{pageTitle pc}
+                    <meta charset=utf-8>
+                    <style>body { font-family: verdana }
+                    ^{pageHead pc}
+                <body>
+                    <article>
+                        ^{pageBody pc}
+        |]
 
-instance Yesod HelloWorld
+instance Yesod App where
+    defaultLayout = myLayout
 
 getHomeR :: Handler Html
-getHomeR = defaultLayout [whamlet|Hello World!|]
+getHomeR = defaultLayout
+    [whamlet|
+        <p>Hello World!
+    |]
 
 main :: IO ()
-main = warp 3000 HelloWorld
+main = warp 3000 App
