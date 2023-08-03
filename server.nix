@@ -1,19 +1,19 @@
 { config, pkgs, ... }:
 {
-  users.groups.jobMarketplace = {};
-  users.users.jobMarketplace = {
+  users.groups.yesod-htmx-template = {};
+  users.users.yesodHtmxTemplate = {
     isSystemUser = true;
-    group = "jobMarketplace";
+    group = "yesodHtmxTemplate";
   };
 
   # Use nginx or keter in production
-  systemd.services."job-marketplace" = {
-    description = "Job marketplace";
-    script = let app = import (./.); in "${app}/bin/job-marketplace";
+  systemd.services."yesod-htmx-template" = {
+    description = "Yesod htmx template";
+    script = let app = import (./.); in "${app}/bin/yesod-htmx-template";
     wantedBy = ["multi-user.target" "ngingx.service" ];
     serviceConfig = {
-      User = "jobMarketplace";
-      Group = "jobMarketplace";
+      User = "yesodHtmxTemplate";
+      Group = "yesodHtmxTemplate";
       # AmbientCapabilities = "CAP_NET_BIND_SERVICE";
       Restart = "always";
       RestartSec = "10s";

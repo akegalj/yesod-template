@@ -1,10 +1,10 @@
 { pkgs ? import <nixpkgs> {} }:
-with pkgs;
-pkgs.mkShell {
-    buildInputs = [
-        (pkgs.haskellPackages.ghcWithPackages (p: with p; [
-            cabal-install
-            yesod-bin
-        ]))
-    ];
+
+with pkgs; mkShell {
+  buildInputs = [
+    (haskellPackages.ghcWithPackages (p: with p; [
+      cabal-install
+      yesod-bin
+    ]))
+  ];
 }
