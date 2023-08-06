@@ -1,19 +1,21 @@
 { config, pkgs, ... }:
+let projectName = "website";
+in
 {
-  users.groups.yesod-htmx-template = {};
-  users.users.yesodHtmxTemplate = {
+  users.groups."${projectName}" = {};
+  users.users."${projectName}" = {
     isSystemUser = true;
-    group = "yesodHtmxTemplate";
+    group = "${projectName}";
   };
 
   # Use nginx or keter in production
-  systemd.services."yesod-htmx-template" = {
-    description = "Yesod htmx template";
-    script = let app = import (./.); in "${app}/bin/yesod-htmx-template";
+  systemd.services."${projectName}" = {
+    description = "Yesod ${projectName }template";
+    script = let app = import (./.); in "${app}/bin/${projectName}";
     wantedBy = ["multi-user.target" "ngingx.service" ];
     serviceConfig = {
-      User = "yesodHtmxTemplate";
-      Group = "yesodHtmxTemplate";
+      User = "${projectName}";
+      Group = "${projectname}";
       # AmbientCapabilities = "CAP_NET_BIND_SERVICE";
       Restart = "always";
       RestartSec = "10s";

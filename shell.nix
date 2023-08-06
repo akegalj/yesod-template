@@ -5,6 +5,9 @@ with pkgs; mkShell {
     (haskellPackages.ghcWithPackages (p: with p; [
       cabal-install
       yesod-bin
+      stack
+      postgresql
+      postgresql-libpq
     ]))
   ];
 }
