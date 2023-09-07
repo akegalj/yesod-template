@@ -4,3 +4,4 @@ result
 stack.yaml.lock
 client_session_key.aes
 yesod-devel/
+.stack-work/
