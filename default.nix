@@ -7,4 +7,7 @@ in
   }) {
     doHaddock = false;
     doCheck = false;
+    postInstall = ''
+      cp -r ${./static} $out/static
+    '';
   }
