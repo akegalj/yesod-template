@@ -1,7 +1,8 @@
 [x] example of a more complex yesod app https://github.com/jappeace/yesod-keter-nix/tree/postgres/backend
 [ ] input field only contains underline https://bootstrapbrain.com/component/login-page-template-using-bootstrap-5/#preview
 [ ] login with google, facebook, twitter
-[ ] sticky header?
+[x] sticky header?
+[ ] add shadow to header when sticky
 [ ] sticky footer?
 [ ] add session env in config/settings
 [ ] add haskdogs to nix-shell
