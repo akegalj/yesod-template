@@ -37,6 +37,7 @@ import Database.Persist.Postgresql
 import Handler.Comment
 import Handler.Common
 import Handler.Home
+import Handler.Loginn
 import Handler.Profile
 import Import
 import Language.Haskell.TH.Syntax (qLocation)

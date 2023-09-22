@@ -20,8 +20,6 @@ import Database.Persist.Sql (ConnectionPool, runSqlPool)
 import Import.NoFoundation
 import Text.Hamlet (hamletFile)
 import Text.Jasmine (minifym)
-import Yesod.Auth.Dummy
-import Yesod.Auth.OpenId (IdentifierType (Claimed), authOpenId)
 import Yesod.Core.Types (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
 import Yesod.Default.Util (addStaticContentExternal)
@@ -175,6 +173,7 @@ instance Yesod App where
   isAuthorized (AuthR _) _ = return Authorized
   isAuthorized CommentR _ = return Authorized
   isAuthorized HomeR _ = return Authorized
+  isAuthorized LoginnR _ = return Authorized
   isAuthorized FaviconR _ = return Authorized
   isAuthorized RobotsR _ = return Authorized
   isAuthorized (StaticR _) _ = return Authorized
@@ -276,10 +275,7 @@ instance YesodAuth App where
 
   -- You can add other plugins like Google Email, email or OAuth here
   authPlugins :: App -> [AuthPlugin App]
-  authPlugins app = [authOpenId Claimed []] ++ extraAuthPlugins
-    where
-      -- Enable authDummy login if enabled.
-      extraAuthPlugins = [authDummy | appAuthDummyLogin $ appSettings app]
+  authPlugins app = []
 
 -- | Access function to determine if a user is logged in.
 isAuthenticated :: Handler AuthResult

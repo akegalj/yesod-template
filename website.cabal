@@ -30,6 +30,7 @@ library
       Handler.Common
       Handler.Home
       Handler.Profile
+      Handler.Loginn
       Import
       Import.NoFoundation
       Model
