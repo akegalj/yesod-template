@@ -44,7 +44,4 @@ $else
                 ^{widget}
 
 <!-- Footer -->
-<footer .footer>
-    <div .container>
-        <p .text-muted>
-            #{appCopyright $ appSettings master}
+^{footer}
